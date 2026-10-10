@@ -5,7 +5,7 @@
 - **Live Application URL:** [https://myapp-898877159294.asia-south1.run.app](https://myapp-898877159294.asia-south1.run.app)
 - **Health Check Probe:** [https://myapp-898877159294.asia-south1.run.app/health](https://myapp-898877159294.asia-south1.run.app/health)
 - **Runtime Metadata Probe:** [https://myapp-898877159294.asia-south1.run.app/api/info](https://myapp-898877159294.asia-south1.run.app/api/info)
-- **GitHub Repository:** [https://github.com/RahulMirji/dockerized-app-cloudrun-deploy](https://github.com/RahulMirji/dockerized-app-cloudrun-deploy)
+- **GitHub Repository:** [https://github.com/sandisandeepsandi7760874784-source/Dockerised-App-CloudRun-Deployment]
 
 ---
 
@@ -33,7 +33,6 @@ We selected and built a modern, responsive **Microservice Status & Operations Da
 - **Data/Cache Layer**: Integrated with a persistent **Redis** caching store defined in `docker-compose.yml` on an isolated internal network.
 
 ### Source Code & Repository
-- **Source Repository**: [RahulMirji/dockerized-app-cloudrun-deploy](https://github.com/RahulMirji/dockerized-app-cloudrun-deploy)
 - **Core Files**:
   - `server.js`: Web server and REST endpoints.
   - `package.json`: Application metadata and dependencies.
