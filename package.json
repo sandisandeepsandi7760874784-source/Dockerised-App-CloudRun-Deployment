@@ -1,0 +1,17 @@
+{
+  "name": "dockerized-app-cloudrun-deploy",
+  "version": "1.0.0",
+  "description": "Containerized App Deployment on GCP Cloud Run",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

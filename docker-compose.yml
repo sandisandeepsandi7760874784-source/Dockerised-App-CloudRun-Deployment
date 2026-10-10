@@ -1,0 +1,58 @@
+# Multi-Container Local Orchestration
+# AWS Cloud & DevOps Intern Assignment: Full-Stack Containerization
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. Application Container (Frontend + Backend Microservice)
+  # ----------------------------------------------------------------------------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dockerized-app-cloudrun-deploy:local
+    container_name: web-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+    depends_on:
+      cache:
+        condition: service_healthy
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8080/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  # ----------------------------------------------------------------------------
+  # 2. In-Memory Data Store / Cache Layer
+  # ----------------------------------------------------------------------------
+  cache:
+    image: redis:7-alpine
+    container_name: cache-redis
+    restart: unless-stopped
+    networks:
+      - app-network
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    # Security: Redis port 6379 is NOT exposed to host machine; only accessible via internal app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local

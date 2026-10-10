@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+.gcp_temp_project_id
+*.log
